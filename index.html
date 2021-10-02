@@ -61,22 +61,24 @@
               class="list-group-item text-center my-3"
               id="bookmarklet-container"
             >
-              ---->
-              <a
-                href="javascript:(function() {
-                  function se(d) {
-                      return d.selection ? d.selection.createRange().text : d.getSelection()
+              <div>
+                ----&gt;
+                <a
+                  href="javascript:(function() {
+                  function getSelectedText(page) {
+                      return page.selection ? page.selection.createRange().text : page.getSelection()
                   } 
-                  s = se(document); 
-                  for (i=0; i<frames.length && (s==null || s==''); i++) s = se(frames[i].document); 
-                  if (!s || s=='') s = prompt('Enter%20search%20terms%20to%20Translate',''); 
-                  open('https://en.wikipedia.org' + (s ? '/w/index.php?title=Special:Search&search=' + encodeURIComponent(s) : '')).focus();
+                  textToTranslate = getSelectedText(document); 
+                  for (i=0; i < frames.length &amp;&amp; (textToTranslate==null || textToTranslate==''); i++) textToTranslate = getSelectedText(frames[i].document); 
+                  if (!textToTranslate || textToTranslate=='') textToTranslate = prompt('Enter text to translate',''); 
+                  open('https://translate.google.com/?sl=nl&amp;tl=en&amp;text=' + (textToTranslate ? encodeURIComponent(textToTranslate) : '')+ '&amp;op=translate').focus();
                   })();
               "
-              >
-                🔎 Wiki Search
-              </a>
-              <---- (Drag to bookmarks of your browser)
+                >
+                  🔣 nl -&gt; en
+                </a>
+                &lt;---- (Drag to bookmarks of your browser)
+              </div>
             </li>
             <li class="list-group-item text-center">
               To install the code just drag the following link to your browsers
@@ -363,13 +365,15 @@
             <code id="bookmarklet-code">
               javascript:(function() { function getSelectedText(page) { return
               page.selection ? page.selection.createRange().text :
-              page.getSelection() } searchText = getSelectedText(document); for
-              (i=0; i < frames.length && (searchText==null || searchText=='');
-              i++) searchText = getSelectedText(frames[i].document); if
-              (!searchText || searchText=='') searchText = prompt('Enter search
-              terms for wikipedia',''); open('https://en.wikipedia.org' +
-              (searchText ? '/w/index.php?title=Special:Search&search=' +
-              encodeURIComponent(searchText) : '')).focus(); })();
+              page.getSelection() } textToTranslate = getSelectedText(document);
+              for (i=0; i < frames.length &amp;&amp; (textToTranslate==null ||
+              textToTranslate==''); i++) textToTranslate =
+              getSelectedText(frames[i].document); if (!textToTranslate ||
+              textToTranslate=='') textToTranslate = prompt('Enter text to
+              translate','');
+              open('https://translate.google.com/?sl=nl&amp;tl=en&amp;text=' +
+              (textToTranslate ? encodeURIComponent(textToTranslate) : '')+
+              '&amp;op=translate').focus(); })();
             </code>
           </div>
         </div>
