@@ -9,21 +9,17 @@ export function bookmarkletFormHandler(event) {
   const bookmarkletElement = document.getElementById('bookmarklet-container');
 
   const emojiElement = document.getElementById('emoji-select');
-  const nameElement = document.getElementById('BookmarkletName');
-  const searchElement = document.getElementById('search-engine');
+  const sourceLangElement = document.getElementById('source-language-select');
+  const targetLangElement = document.getElementById('target-language-select');
 
   const emoji = emojiElement.value;
-  let bookmarkletName = nameElement.value;
-  const search = searchElement.value;
-
-  if (bookmarkletName.length === 0) {
-    bookmarkletName = 'Wiki Search...';
-  }
+  let sourceLangCode = sourceLangElement.value;
+  const targetLangCode = targetLangElement.value;
 
   bookmarkletElement.innerHTML = '';
 
   bookmarkletElement.appendChild(
-    createTheBookmarklet(emoji, bookmarkletName, search)
+    createTheBookmarklet(emoji, sourceLangCode, targetLangCode)
   );
 
   const aElement = bookmarkletElement.querySelector('a');
